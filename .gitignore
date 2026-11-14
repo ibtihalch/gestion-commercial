@@ -1,0 +1,14 @@
+node_modules/
+frontend/node_modules/
+backend/target/
+backend/uploads/
+target/
+.env
+.env.cmd
+*.class
+Untitled-1.html
+.DS_Store
+frontend/dist/
+backend/[Help
+.env
+.env.cmd

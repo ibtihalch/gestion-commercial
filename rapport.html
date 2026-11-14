@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rapport — Gestion Commerciale</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1a1a1a; background: #fff; }
+
+    .cover {
+      height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #618bba 0%, #0d47a1 100%);
+      color: white; text-align: center; padding: 40px;
+      page-break-after: always;
+    }
+    .cover .school { font-size: 15px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; margin-bottom: 8px; }
+    .cover .module { font-size: 13px; opacity: 0.75; margin-bottom: 50px; }
+    .cover h1 { font-size: 38px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+    .cover .subtitle { font-size: 16px; opacity: 0.85; margin-bottom: 60px; }
+    .cover .meta { font-size: 13px; opacity: 0.75; line-height: 2; }
+    .cover .badge {
+      display: inline-block; background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 20px;
+      padding: 6px 18px; margin-top: 30px; font-size: 12px; letter-spacing: 1px;
+    }
+
+    .page { max-width: 900px; margin: 0 auto; padding: 50px 60px; }
+
+    h2 {
+      font-size: 20px; font-weight: 700; color: #0d47a1;
+      border-left: 4px solid #1565c0; padding-left: 12px;
+      margin: 40px 0 16px;
+    }
+    h3 { font-size: 14px; font-weight: 700; color: #333; margin: 24px 0 10px; }
+
+    p { line-height: 1.7; margin-bottom: 10px; color: #333; }
+
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 24px; font-size: 12.5px; }
+    th { background: #1565c0; color: white; padding: 9px 12px; text-align: left; font-weight: 600; }
+    td { padding: 8px 12px; border-bottom: 1px solid #e8ecf0; }
+    tr:nth-child(even) td { background: #f5f7fa; }
+    tr:hover td { background: #eef2fb; }
+
+    .badge-ok {
+      display: inline-block; background: #e8f5e9; color: #2e7d32;
+      border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 600;
+    }
+
+    pre, code {
+      background: #f4f6f9; border: 1px solid #dde3ea;
+      border-radius: 6px; font-family: 'Consolas', monospace; font-size: 12px;
+    }
+    pre { padding: 14px 18px; overflow-x: auto; margin: 12px 0; line-height: 1.6; }
+    code { padding: 2px 6px; }
+
+    .arch-box {
+      background: #f0f4ff; border: 1px solid #c5d3f5;
+      border-radius: 8px; padding: 18px 24px; margin: 14px 0;
+      font-family: 'Consolas', monospace; font-size: 12px; line-height: 1.8;
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+    .card {
+      background: #f8faff; border: 1px solid #dde6f8;
+      border-radius: 8px; padding: 16px;
+    }
+    .card h4 { font-size: 13px; color: #1565c0; margin-bottom: 8px; font-weight: 700; }
+    .card ul { padding-left: 18px; }
+    .card li { font-size: 12px; line-height: 1.8; color: #444; }
+
+    .highlight {
+      background: #fff8e1; border-left: 3px solid #f9a825;
+      padding: 10px 16px; border-radius: 0 6px 6px 0;
+      margin: 12px 0; font-size: 12.5px;
+    }
+
+    .toc { background: #f5f7fa; border: 1px solid #e0e5ed; border-radius: 8px; padding: 20px 30px; margin: 20px 0 40px; }
+    .toc h3 { color: #1565c0; margin-bottom: 12px; font-size: 15px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { line-height: 2.2; font-size: 13px; color: #444; }
+    .toc a { color: #1565c0; text-decoration: none; }
+
+    .section-break { page-break-before: always; }
+
+    footer {
+      text-align: center; font-size: 11px; color: #999;
+      border-top: 1px solid #eee; padding: 20px; margin-top: 60px;
+    }
+
+    @media print {
+      .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      h2 { page-break-after: avoid; }
+      table { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAGE DE GARDE -->
+<div class="cover">
+  <div class="school">ENSAM — École Nationale Supérieure d'Arts et Métiers de Meknès</div>
+  <div class="module">Module : Frameworks J2EE et Spring &nbsp;|&nbsp; Encadrant : Prof. S. Amri</div>
+  <h1>Application de Gestion Commerciale</h1>
+  <div class="subtitle">Projet Full-Stack — Spring Boot &amp; React</div>
+  <div class="meta">
+    Filière : ILSI — 2025 / 2026<br/>
+    Technologies : Spring Boot 3.2 &nbsp;·&nbsp; React 18 &nbsp;·&nbsp; MySQL 8 &nbsp;·&nbsp; JWT
+  </div>
+  <div class="badge">Rapport Technique</div>
+</div>
+
+<!-- CONTENU -->
+<div class="page">
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <h3>Table des matières</h3>
+    <ol>
+      <li><a href="#s1">Présentation du projet</a></li>
+      <li><a href="#s2">Architecture technique</a></li>
+      <li><a href="#s3">Modèle de données — Entités JPA</a></li>
+      <li><a href="#s4">Sécurité — JWT &amp; RBAC</a></li>
+      <li><a href="#s5">Couche Service — Logique métier</a></li>
+      <li><a href="#s6">API REST — Contrôleurs</a></li>
+      <li><a href="#s7">Interface utilisateur — Frontend React</a></li>
+      <li><a href="#s8">Initialisation automatique</a></li>
+      <li><a href="#s9">Conformité au cahier des charges</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <h2 id="s1">1. Présentation du projet</h2>
+  <p>
+    Ce projet est une application web de <strong>gestion commerciale complète</strong>, développée dans le cadre du module Frameworks J2EE et Spring. Elle couvre l'intégralité du cycle commercial d'une entreprise : de la création du devis jusqu'à la facturation client, en passant par les commandes, les livraisons et le suivi des stocks.
+  </p>
+  <p>
+    L'application adopte une architecture <strong>API REST + SPA</strong> (Single Page Application), avec un backend Spring Boot exposant des endpoints JSON consommés par un frontend React.
+  </p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Objectifs fonctionnels</h4>
+      <ul>
+        <li>Gestion des clients et fournisseurs</li>
+        <li>Catalogue articles avec alertes stock</li>
+        <li>Cycle Devis → Commande → Livraison → Facture</li>
+        <li>Achats fournisseurs (commande → réception → facture)</li>
+        <li>Mouvements de stock (entrée / sortie / ajustement)</li>
+        <li>Tableau de bord avec KPIs agrégés</li>
+        <li>Gestion des utilisateurs et des rôles</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Contraintes techniques</h4>
+      <ul>
+        <li>Architecture en couches stricte</li>
+        <li>Relations JPA (@OneToMany, @ManyToMany, @OneToOne)</li>
+        <li>Authentification JWT stateless</li>
+        <li>Contrôle d'accès basé sur les rôles (RBAC)</li>
+        <li>Pagination Spring Data</li>
+        <li>Documentation Swagger/OpenAPI</li>
+        <li>Séparation DTO / Entité</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <h2 id="s2" class="section-break">2. Architecture technique</h2>
+
+  <h3>2.1 Structure du projet</h3>
+  <div class="arch-box">
+projet amri gestion/<br/>
+├── backend/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Spring Boot 3.2.5 (port 8080)<br/>
+│&nbsp;&nbsp;&nbsp;├── src/main/java/com/gestion/commerciale/<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── config/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← SecurityConfig, CorsConfig, SwaggerConfig, DataInitializer<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── controller/&nbsp;&nbsp;&nbsp;← 16 contrôleurs REST<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── service/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 16 interfaces de service<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── impl/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 15 implémentations<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── repository/&nbsp;&nbsp;&nbsp;← 15 repositories JPA<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── entity/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 24 entités JPA<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── dto/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 15 DTOs (+ auth)<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── security/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← JwtUtil, JwtAuthFilter, CustomUserDetailsService<br/>
+│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── exception/&nbsp;&nbsp;&nbsp;&nbsp;← GlobalExceptionHandler<br/>
+│&nbsp;&nbsp;&nbsp;└── src/main/resources/application.yml<br/>
+└── frontend/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← React 18 + Vite (port 5173)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;└── src/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── pages/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 11 pages<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── services/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 16 services Axios<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── context/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← AuthContext (JWT)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── routes/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← PrivateRoute (RBAC)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── components/&nbsp;&nbsp;&nbsp;← Layout (Drawer + AppBar)
+  </div>
+
+  <h3>2.2 Flux de données</h3>
+  <div class="arch-box">
+React (Axios) → [Bearer JWT] → Spring Security → Controller → Service → Repository → MySQL
+  </div>
+
+  <h3>2.3 Stack technologique</h3>
+  <table>
+    <tr><th>Couche</th><th>Technologie</th><th>Version</th></tr>
+    <tr><td>Backend framework</td><td>Spring Boot</td><td>3.2.5</td></tr>
+    <tr><td>Sécurité</td><td>Spring Security + JJWT</td><td>6.x / 0.11.5</td></tr>
+    <tr><td>ORM</td><td>Spring Data JPA / Hibernate</td><td>6.x</td></tr>
+    <tr><td>Base de données</td><td>MySQL</td><td>8.x</td></tr>
+    <tr><td>Documentation API</td><td>SpringDoc OpenAPI (Swagger)</td><td>2.3.0</td></tr>
+    <tr><td>Utilitaires</td><td>Lombok / MapStruct</td><td>1.18.30 / 1.5.5</td></tr>
+    <tr><td>Frontend framework</td><td>React + Vite</td><td>18 / 5.x</td></tr>
+    <tr><td>UI Components</td><td>Material UI</td><td>5.x</td></tr>
+    <tr><td>Routing</td><td>React Router</td><td>6.x</td></tr>
+    <tr><td>HTTP Client</td><td>Axios</td><td>1.x</td></tr>
+    <tr><td>Graphiques</td><td>Recharts</td><td>2.x</td></tr>
+  </table>
+
+  <!-- 3 -->
+  <h2 id="s3" class="section-break">3. Modèle de données — Entités JPA</h2>
+  <p>Le modèle comprend <strong>24 entités</strong> réparties en 6 domaines fonctionnels.</p>
+
+  <table>
+    <tr><th>Domaine</th><th>Entités</th><th>Relations</th></tr>
+    <tr>
+      <td><strong>Sécurité</strong></td>
+      <td>Utilisateur, Role, ProfilUtilisateur</td>
+      <td>@ManyToMany (utilisateur_roles), @OneToOne (profil)</td>
+    </tr>
+    <tr>
+      <td><strong>Référentiel</strong></td>
+      <td>Entreprise, Client, Fournisseur, Article, Affaire</td>
+      <td>@ManyToOne → Entreprise</td>
+    </tr>
+    <tr>
+      <td><strong>Ventes</strong></td>
+      <td>Devis, DevisDetail, BonCommandeClient, BonCommandeClientDetail</td>
+      <td>@OneToMany (détails), @ManyToOne (client, affaire)</td>
+    </tr>
+    <tr>
+      <td><strong>Logistique</strong></td>
+      <td>BonLivraison, BonLivraisonDetail</td>
+      <td>@ManyToOne (client, bonCommandeClient)</td>
+    </tr>
+    <tr>
+      <td><strong>Achats</strong></td>
+      <td>BonCommandeFournisseur, BonCommandeFournisseurDetail, BonReceptionFournisseur, BonReceptionFournisseurDetail</td>
+      <td>@ManyToOne (fournisseur, affaire)</td>
+    </tr>
+    <tr>
+      <td><strong>Facturation</strong></td>
+      <td>FactureClient, FactureClientDetail, FactureFournisseur, FactureFournisseurDetail, MouvementStock</td>
+      <td>@ManyToOne (client/fournisseur, bonLivraison)</td>
+    </tr>
+  </table>
+
+  <h3>Exemple de relation @ManyToMany</h3>
+  <pre>@ManyToMany(fetch = FetchType.EAGER)
+@JoinTable(
+  name = "utilisateur_roles",
+  joinColumns = @JoinColumn(name = "utilisateur_id"),
+  inverseJoinColumns = @JoinColumn(name = "role_id")
+)
+private Set&lt;Role&gt; roles = new HashSet&lt;&gt;();</pre>
+
+  <h3>Numérotation automatique des documents</h3>
+  <p>Le <code>NumeroGeneratorService</code> génère les numéros de documents au format <code>PREFIX-ANNÉE-XXXX</code> via une requête native SQL :</p>
+  <pre>SELECT COUNT(*) FROM {table} WHERE {colonne} LIKE 'PREFIX-2026-%'
+→ résultat + 1, formaté sur 4 chiffres : DEV-2026-0001</pre>
+
+  <table>
+    <tr><th>Document</th><th>Préfixe</th><th>Exemple</th></tr>
+    <tr><td>Devis</td><td>DEV</td><td>DEV-2026-0001</td></tr>
+    <tr><td>Bon commande client</td><td>BCC</td><td>BCC-2026-0001</td></tr>
+    <tr><td>Bon commande fournisseur</td><td>BCF</td><td>BCF-2026-0001</td></tr>
+    <tr><td>Bon de livraison</td><td>BL</td><td>BL-2026-0001</td></tr>
+    <tr><td>Bon de réception fournisseur</td><td>BRF</td><td>BRF-2026-0001</td></tr>
+    <tr><td>Facture client</td><td>FC</td><td>FC-2026-0001</td></tr>
+    <tr><td>Facture fournisseur</td><td>FF</td><td>FF-2026-0001</td></tr>
+  </table>
+
+  <!-- 4 -->
+  <h2 id="s4" class="section-break">4. Sécurité — JWT &amp; RBAC</h2>
+
+  <h3>4.1 Authentification JWT</h3>
+  <p>L'authentification est <strong>stateless</strong> : aucune session serveur. Chaque requête porte un token JWT dans l'en-tête <code>Authorization: Bearer &lt;token&gt;</code>.</p>
+
+  <table>
+    <tr><th>Token</th><th>Durée</th><th>Usage</th></tr>
+    <tr><td>Access Token</td><td>15 minutes</td><td>Accès aux endpoints API</td></tr>
+    <tr><td>Refresh Token</td><td>7 jours</td><td>Renouvellement du access token</td></tr>
+  </table>
+
+  <h3>4.2 Flux d'authentification</h3>
+  <div class="arch-box">
+POST /api/auth/login → AuthenticationManager → CustomUserDetailsService<br/>
+→ JwtUtil.generateToken() → { accessToken, refreshToken, roles, entrepriseId }<br/>
+<br/>
+Requêtes suivantes :<br/>
+Header: Authorization: Bearer &lt;accessToken&gt;<br/>
+→ JwtAuthFilter → validateToken → SecurityContextHolder
+  </div>
+
+  <h3>4.3 Rôles et permissions</h3>
+  <table>
+    <tr><th>Rôle</th><th>Accès</th></tr>
+    <tr><td>ROLE_ADMIN</td><td>Accès total + gestion utilisateurs + suppressions</td></tr>
+    <tr><td>ROLE_VENDEUR</td><td>Devis, commandes client, factures client</td></tr>
+    <tr><td>ROLE_ACHETEUR</td><td>Commandes fournisseur, réceptions, factures fournisseur</td></tr>
+    <tr><td>ROLE_MAGASINIER</td><td>Stock, bons de livraison, bons de réception</td></tr>
+    <tr><td>ROLE_CONSULTANT</td><td>Lecture seule</td></tr>
+  </table>
+
+  <!-- 5 -->
+  <h2 id="s5" class="section-break">5. Couche Service — Logique métier</h2>
+
+  <p>Chaque service suit le pattern <strong>Interface + Implémentation</strong> (<code>@Service @Transactional</code>).</p>
+
+  <table>
+    <tr><th>Service</th><th>Méthodes principales</th></tr>
+    <tr><td>ClientService</td><td>findAll (paginé), findById, create, update, delete, count</td></tr>
+    <tr><td>FournisseurService</td><td>findAll (paginé), findById, create, update, delete, count</td></tr>
+    <tr><td>ArticleService</td><td>findAll, findById, findAlertes, create, update, delete</td></tr>
+    <tr><td>AffaireService</td><td>CRUD paginé par entreprise</td></tr>
+    <tr><td>DevisService</td><td>CRUD + updateStatut + calcul TVA 20% + numérotation auto</td></tr>
+    <tr><td>BonCommandeClientService</td><td>CRUD + updateStatut + calcul montants + numérotation</td></tr>
+    <tr><td>BonCommandeFournisseurService</td><td>CRUD + updateStatut + calcul montants + numérotation</td></tr>
+    <tr><td>BonLivraisonService</td><td>CRUD + updateStatut + numérotation auto</td></tr>
+    <tr><td>BonReceptionFournisseurService</td><td>CRUD + updateStatut + numérotation auto</td></tr>
+    <tr><td>FactureClientService</td><td>CRUD + updateStatut + sumImpayees + sumPayees</td></tr>
+    <tr><td>FactureFournisseurService</td><td>CRUD + updateStatut + numérotation auto</td></tr>
+    <tr><td>MouvementStockService</td><td>findAll, create (entrée/sortie/ajustement + validation stock)</td></tr>
+    <tr><td>UtilisateurService</td><td>CRUD + encodage BCrypt + assignation rôles</td></tr>
+    <tr><td>EntrepriseService</td><td>CRUD complet</td></tr>
+    <tr><td>DashboardService</td><td>9 KPIs agrégés en une requête</td></tr>
+    <tr><td>NumeroGeneratorService</td><td>Génération numéros documents (native SQL)</td></tr>
+  </table>
+
+  <h3>Calcul automatique de la TVA</h3>
+  <pre>BigDecimal totalHt  = détails.stream().map(d -> d.prix * d.qte).sum();
+BigDecimal tva      = totalHt * 0.20;
+BigDecimal totalTtc = totalHt + tva;</pre>
+
+  <h3>Validation du stock (sortie)</h3>
+  <pre>if (typeMouvement == sortie && article.getStock() < qte)
+    throw new BadRequestException("Stock insuffisant : " + article.getStock());</pre>
+
+  <!-- 6 -->
+  <h2 id="s6" class="section-break">6. API REST — Contrôleurs</h2>
+
+  <p>Format de réponse uniforme pour tous les endpoints :</p>
+  <pre>{
+  "success": true,
+  "data": { ... }          // objet ou Page (content, totalPages, totalElements)
+}</pre>
+
+  <table>
+    <tr><th>Contrôleur</th><th>Base URL</th><th>Méthodes</th></tr>
+    <tr><td>AuthController</td><td>/api/auth</td><td>POST /login, POST /register</td></tr>
+    <tr><td>EntrepriseController</td><td>/api/entreprises</td><td>GET, GET/{id}, POST, PUT/{id}, DELETE/{id}</td></tr>
+    <tr><td>ClientController</td><td>/api/clients</td><td>GET, GET/{id}, POST, PUT/{id}, DELETE/{id}</td></tr>
+    <tr><td>FournisseurController</td><td>/api/fournisseurs</td><td>GET, GET/{id}, POST, PUT/{id}, DELETE/{id}</td></tr>
+    <tr><td>ArticleController</td><td>/api/articles</td><td>GET, GET/{id}, GET/alertes, POST, PUT/{id}, DELETE/{id}</td></tr>
+    <tr><td>AffaireController</td><td>/api/affaires</td><td>GET, GET/{id}, POST, PUT/{id}, DELETE/{id}</td></tr>
+    <tr><td>DevisController</td><td>/api/devis</td><td>GET, GET/{id}, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>BonCommandeClientController</td><td>/api/bons-commande-client</td><td>GET, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>BonCommandeFournisseurController</td><td>/api/bons-commande-fournisseur</td><td>GET, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>BonLivraisonController</td><td>/api/bons-livraison</td><td>GET, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>BonReceptionFournisseurController</td><td>/api/bons-reception-fournisseur</td><td>GET, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>FactureClientController</td><td>/api/factures-client</td><td>GET, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>FactureFournisseurController</td><td>/api/factures-fournisseur</td><td>GET, POST, PUT/{id}, PATCH/{id}/statut, DELETE/{id}</td></tr>
+    <tr><td>MouvementStockController</td><td>/api/mouvements-stock</td><td>GET, POST</td></tr>
+    <tr><td>UtilisateurController</td><td>/api/utilisateurs</td><td>GET, GET/{id}, POST, PUT/{id}, DELETE/{id}</td></tr>
+    <tr><td>DashboardController</td><td>/api/dashboard/stats</td><td>GET ?entrepriseId=</td></tr>
+  </table>
+
+  <h3>Gestion globale des exceptions</h3>
+  <table>
+    <tr><th>Exception</th><th>Code HTTP</th><th>Cas d'usage</th></tr>
+    <tr><td>ResourceNotFoundException</td><td>404</td><td>Entité introuvable</td></tr>
+    <tr><td>BadRequestException</td><td>400</td><td>Données invalides, stock insuffisant, login existant</td></tr>
+    <tr><td>MethodArgumentNotValidException</td><td>400</td><td>Validation @Valid échouée</td></tr>
+    <tr><td>BadCredentialsException</td><td>401</td><td>Login/mot de passe incorrect</td></tr>
+    <tr><td>AccessDeniedException</td><td>403</td><td>Rôle insuffisant</td></tr>
+    <tr><td>Exception</td><td>500</td><td>Erreur serveur inattendue</td></tr>
+  </table>
+
+  <!-- 7 -->
+  <h2 id="s7" class="section-break">7. Interface utilisateur — Frontend React</h2>
+
+  <table>
+    <tr><th>Page</th><th>Route</th><th>Fonctionnalités</th></tr>
+    <tr><td>Connexion</td><td>/login</td><td>Formulaire JWT, redirection auto si déjà connecté</td></tr>
+    <tr><td>Tableau de bord</td><td>/dashboard</td><td>9 KPI cards + graphiques Recharts, montants en MAD</td></tr>
+    <tr><td>Clients</td><td>/clients</td><td>Tableau paginé, CRUD avec modal, recherche</td></tr>
+    <tr><td>Fournisseurs</td><td>/fournisseurs</td><td>Tableau paginé, CRUD complet</td></tr>
+    <tr><td>Articles</td><td>/articles</td><td>CRUD + badge alerte rouge si stock ≤ seuil</td></tr>
+    <tr><td>Affaires</td><td>/affaires</td><td>CRUD paginé</td></tr>
+    <tr><td>Devis</td><td>/devis</td><td>Liste + dropdown statut coloré (brouillon/envoyé/accepté/refusé)</td></tr>
+    <tr><td>Commandes client</td><td>/commandes</td><td>Liste + changement statut inline</td></tr>
+    <tr><td>Livraisons</td><td>/livraisons</td><td>Liste bons de livraison + changement statut</td></tr>
+    <tr><td>Factures client</td><td>/factures</td><td>Liste + statut paiement (impayée/payée/annulée)</td></tr>
+    <tr><td>Stock</td><td>/stock</td><td>Formulaire mouvement : entrée / sortie / ajustement</td></tr>
+    <tr><td>Utilisateurs</td><td>/utilisateurs</td><td>CRUD admin uniquement (ROLE_ADMIN requis)</td></tr>
+  </table>
+
+  <h3>Navigation et sécurité frontend</h3>
+  <div class="highlight">
+    Le composant <code>PrivateRoute</code> redirige vers <code>/login</code> si l'utilisateur n'est pas authentifié, et vers <code>/403</code> si son rôle est insuffisant. La page Utilisateurs n'est visible dans le menu que pour les ROLE_ADMIN.
+  </div>
+
+  <!-- 8 -->
+  <h2 id="s8">8. Initialisation automatique</h2>
+  <p>Le <code>DataInitializer</code> (<code>CommandLineRunner</code>) s'exécute à chaque démarrage de l'application et crée les données de base si elles n'existent pas :</p>
+
+  <table>
+    <tr><th>Donnée créée</th><th>Valeur</th></tr>
+    <tr><td>Rôles (5)</td><td>ROLE_ADMIN, ROLE_VENDEUR, ROLE_ACHETEUR, ROLE_MAGASINIER, ROLE_CONSULTANT</td></tr>
+    <tr><td>Entreprise par défaut</td><td>Mon Entreprise</td></tr>
+    <tr><td>Compte administrateur</td><td>login : <strong>admin</strong> / mot de passe : <strong>admin123</strong></td></tr>
+  </table>
+
+  <!-- 9 -->
+  <h2 id="s9" class="section-break">9. Conformité au cahier des charges</h2>
+
+  <table>
+    <tr><th>Exigence</th><th>Statut</th><th>Détail</th></tr>
+    <tr><td>Architecture en couches Controller/Service/Repository</td><td><span class="badge-ok">✔ Réalisé</span></td><td>16 contrôleurs, 16 services (interface + impl), 15 repositories</td></tr>
+    <tr><td>Relations JPA @OneToMany</td><td><span class="badge-ok">✔ Réalisé</span></td><td>Toutes les entités document ↔ détails, entreprise ↔ entités métier</td></tr>
+    <tr><td>Relation JPA @ManyToMany</td><td><span class="badge-ok">✔ Réalisé</span></td><td>Utilisateur ↔ Role via table utilisateur_roles</td></tr>
+    <tr><td>Relation JPA @OneToOne</td><td><span class="badge-ok">✔ Réalisé</span></td><td>Utilisateur ↔ ProfilUtilisateur</td></tr>
+    <tr><td>Authentification JWT</td><td><span class="badge-ok">✔ Réalisé</span></td><td>Access token 15min + refresh token 7j, filtre OncePerRequestFilter</td></tr>
+    <tr><td>RBAC — Contrôle d'accès par rôle</td><td><span class="badge-ok">✔ Réalisé</span></td><td>5 rôles, @PreAuthorize sur les endpoints sensibles</td></tr>
+    <tr><td>Pagination Spring Data</td><td><span class="badge-ok">✔ Réalisé</span></td><td>Tous les endpoints GET liste sont paginés (page, size, sort)</td></tr>
+    <tr><td>Documentation Swagger/OpenAPI</td><td><span class="badge-ok">✔ Réalisé</span></td><td>SpringDoc 2.3.0, auth Bearer, disponible sur /swagger-ui.html</td></tr>
+    <tr><td>DTOs séparés des entités</td><td><span class="badge-ok">✔ Réalisé</span></td><td>15 DTOs, mapping manuel dans les services</td></tr>
+    <tr><td>Validation des données</td><td><span class="badge-ok">✔ Réalisé</span></td><td>@Valid + @NotNull/@NotBlank/@Size sur tous les DTOs</td></tr>
+    <tr><td>Gestion globale des exceptions</td><td><span class="badge-ok">✔ Réalisé</span></td><td>@RestControllerAdvice, 6 types d'exceptions gérées</td></tr>
+    <tr><td>Frontend React fonctionnel</td><td><span class="badge-ok">✔ Réalisé</span></td><td>11 pages, MUI 5, React Router 6, Axios, Recharts</td></tr>
+  </table>
+
+  <footer>
+    Application de Gestion Commerciale — ENSAM Meknès &nbsp;|&nbsp; Module Frameworks J2EE et Spring &nbsp;|&nbsp; Prof. S. Amri &nbsp;|&nbsp; ILSI 2025/2026
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Bloc haut bleu -->
+  <rect x="18" y="10" width="38" height="18" rx="3" fill="#1A6FE8"/>
+  <!-- Bloc bas orange -->
+  <rect x="18" y="32" width="38" height="18" rx="3" fill="#F59E0B"/>
+  <!-- Barre verticale gauche -->
+  <rect x="12" y="10" width="8" height="40" rx="3" fill="#0E3D9C"/>
+</svg>

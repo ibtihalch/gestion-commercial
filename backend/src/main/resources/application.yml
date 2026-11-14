@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/gestion_commercial?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+    username: root
+    password: "@Ibtihal04"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  jwt:
+    secret: uneClefSecreteTresLongueEtAleatoire1234567890ABCDEF
+    expiration: 86400000
+    refresh-expiration: 604800000
+  upload:
+    dir: uploads
+
+assistant:
+  groq:
+    api-key: ${GROQ_API_KEY}
+    model: llama-3.3-70b-versatile
+    base-url: https://api.groq.com/openai/v1/chat/completions
